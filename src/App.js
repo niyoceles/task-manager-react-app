@@ -47,7 +47,7 @@ class App extends Component {
 
       </div>
     );
-  } 279745
+  }
 }
 
 
