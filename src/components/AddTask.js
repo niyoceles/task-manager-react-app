@@ -19,7 +19,7 @@ class AddTask extends Component {
     } else {
       this.setState({
         newTask: {
-          id:uuid.v4(),
+          id: uuid.v4(),
           title: this.refs.title.value,
           category: this.refs.category.value
         }
@@ -32,7 +32,7 @@ class AddTask extends Component {
 
   render() {
     let categoryOption = this.defautOption.categories.map(category => {
-      return <option key={category} value={category}>{category}</option>
+      return <option key={category} value={category}>{category} </option>
     })
     return (
       <div>

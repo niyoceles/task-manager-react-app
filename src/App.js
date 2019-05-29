@@ -38,12 +38,19 @@ class App extends Component {
     tasks.push(task);
     this.setState({ tasks: tasks })
   }
+
+  handleDeleteTask(id) {
+    let tasks = this.state.tasks;
+    let index = tasks.findIndex(x => x.id === 'id');
+    tasks.splice(index, 1);
+    this.setState({ tasks: tasks });
+  }
   render() {
     return (
       <div className="App" >
         <h3>My Task waiting to be done</h3>
         <AddTask addTask={this.addTaskHandle.bind(this)} />
-        <Tasks Tasks={this.state.tasks} />
+        <Tasks Tasks={this.state.tasks} onDelete={this.handleDeleteTask.bind(this)} />
 
       </div>
     );
