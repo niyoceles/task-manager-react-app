@@ -5,7 +5,7 @@ class TaskItem extends Component {
     return (
 
       <li className="Tasks">
-        <strong>{this.props.Task.title}</strong>-{this.props.Task.category}
+        <strong>this.props.Task.title}</strong>-{this.props.Task.category}
       </li>
     );
   }
