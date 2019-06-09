@@ -21,18 +21,15 @@ function mapStateToProps(state) {
   }
 }
 
+// dispatch
 function mapDispatchToProps(dispatch) {
   // console.log('mapDispatchToProps', dispatch);
   return {
     onIncrementClick: () => {
-      console.log('Clickin')
-      const action = { type: 'INCREMENT' };
-      dispatch(action);
+      dispatch({ type: 'INCREMENT' });
     },
     onDecrementClick: () => {
-      console.log('Clickin')
-      const action = { type: 'DECREMENT' };
-      dispatch(action);
+      dispatch( {type: 'DECREMENT' });
     },
 
   }
