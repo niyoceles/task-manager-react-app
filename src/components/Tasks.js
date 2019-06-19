@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import TaskItem from './TaskItem';
 
 class Tasks extends Component {
+  deleteTask(id) {
+    this.props.onDelete(id);
+  }
   render() {
-    console.log(this.props.Tasks[0].title)
+    // console.log(this.props.Tasks[0].title)
     let TaskItems;
     if (this.props.Tasks) {
       TaskItems = this.props.Tasks.map(task => {
         return (
-          <TaskItem key={task.title} Task={task} />
+          <TaskItem onDelete={this.deleteTask.bind(this)} key={task.title} Task={task} />
         );
       });
     }
