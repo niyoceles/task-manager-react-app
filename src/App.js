@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Counter from './components/counter';
 import Tasks from './components/Tasks1';
 import Posts from './components/Tasks'
 import PostForm from './components/TaskForm'
@@ -13,7 +12,6 @@ class App extends Component {
     return (
       <Provider store= {store}>
       <div className="App" >
-        <Counter store={store} />
         <h3>My Task waiting to be done</h3>
         <Tasks />
         <h1>Creating Post</h1>
