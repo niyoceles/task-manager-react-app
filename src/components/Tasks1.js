@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-// import { Provider } from 'react-redux';
-
-import Tasks from './components/Tasks';
 import uuid from 'uuid';
-import './App.css';
-import AddTask from './components/AddTask';
-// import store from './components/store'
-import Counter from './counter';
+import AddTask from './AddTask';
+import TaskItem from './TaskItem';
 
-class App extends Component {
+class Tasks extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,18 +44,21 @@ class App extends Component {
     tasks.splice(index, 1);
     this.setState({ tasks: tasks });
   }
+
   render() {
+    let TaskItems;
+      TaskItems = this.state.tasks.map(task => {
+        return (
+          <TaskItem onDelete={this.handleDeleteTask.bind(this)} key={task.title} Task={task} />
+        );
+      });
     return (
-      <div className="App" >
-        <Counter />
-        <h3>My Task waiting to be done</h3>
-        <AddTask addTask={this.addTaskHandle.bind(this)} />
-        <Tasks Tasks={this.state.tasks} onDelete={this.handleDeleteTask.bind(this)} />
-        <hr />
+      <div className="Tasks" >
+         <AddTask addTask={this.addTaskHandle.bind(this)} />
+        My Tasks
+        {TaskItems}
       </div>
     );
   }
 }
-
-
-export default App;
+export default Tasks;

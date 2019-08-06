@@ -1,26 +1,44 @@
 import React, { Component } from 'react';
-import TaskItem from './TaskItem';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import {fetchTask} from '../actions/postAction';
 
-class Tasks extends Component {
-  deleteTask(id) {
-    this.props.onDelete(id);
+class Posts extends Component {
+
+  componentWillMount() {
+   this.props.fetchTask();
   }
-  render() {
-    // console.log(this.props.Tasks[0].title)
-    let TaskItems;
-    if (this.props.Tasks) {
-      TaskItems = this.props.Tasks.map(task => {
-        return (
-          <TaskItem onDelete={this.deleteTask.bind(this)} key={task.title} Task={task} />
-        );
-      });
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.newTask){
+    this.props.taskRedxxxx.unshift(nextProps.newTask);
     }
+
+  }
+
+  render() {
+    const PostItem = this.props.taskRedxxxx.map(post => (
+      <div key={post.id}>
+        <h3>{post.title}</h3>
+        {post.body}
+      </div>
+    ))
     return (
-      <div className="Tasks" >
-        My Tasks
-        {TaskItems}
+      <div>
+        Posts
+        {PostItem}
       </div>
     );
   }
 }
-export default Tasks;
+
+Posts.propTypes = {
+  fetchTask: PropTypes.func.isRequired,
+  Posts: PropTypes.array.isRequired,
+  newTask:PropTypes.object
+};
+const mapStateToProps = state =>({
+  taskRedxxxx: state.taskRedxxxx.items,
+  newTask: state.newTask.item,
+});
+export default connect(mapStateToProps, {fetchTask})(Posts);
