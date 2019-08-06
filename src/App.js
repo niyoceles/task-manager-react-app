@@ -1,62 +1,27 @@
 import React, { Component } from 'react';
 import Counter from './components/counter';
-import Tasks from './components/Tasks';
-import uuid from 'uuid';
+import Tasks from './components/Tasks1';
+import Posts from './components/Tasks'
+import PostForm from './components/TaskForm'
 import './App.css';
-import AddTask from './components/AddTask';
-import store from './store';
+import { Provider } from 'react-redux';
+import store from './components/store';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tasks: []
-    }
-  }
-
-  componentWillMount() {
-    this.setState({
-      tasks: [{
-        id: uuid.v4(),
-        title: 'Writing story on pivot traker',
-        category: 'Writing story'
-      },
-      {
-        id: uuid.v4(),
-        title: 'Designing UI',
-        category: 'Development design'
-      },
-      {
-        id: uuid.v4(),
-        title: 'Designing API',
-        category: 'backend development'
-      },]
-    })
-  }
-
-  addTaskHandle(task) {
-    // console.log(task);
-    let tasks = this.state.tasks;
-    tasks.push(task);
-    this.setState({ tasks: tasks })
-  }
-
-  handleDeleteTask(id) {
-    let tasks = this.state.tasks;
-    let index = tasks.findIndex(x => x.id === 'id');
-    tasks.splice(index, 1);
-    this.setState({ tasks: tasks });
-  }
 
   render() {
     return (
+      <Provider store= {store}>
       <div className="App" >
         <Counter store={store} />
         <h3>My Task waiting to be done</h3>
-        <AddTask addTask={this.addTaskHandle.bind(this)} />
-        <Tasks Tasks={this.state.tasks} onDelete={this.handleDeleteTask.bind(this)} />
-
+        <Tasks />
+        <h1>Creating Post</h1>
+        <PostForm />
+        <h1>Posts</h1>
+        <Posts />
       </div>
+      </Provider>
     );
   }
 }
